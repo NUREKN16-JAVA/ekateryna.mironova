@@ -82,7 +82,7 @@ public class TestUser {
 	
 	// Тест Возраста 6 - для случая, где день рождения будет в текущем месяце
 	private static final int ETALONE_AGE_6 = CURRENT_YEAR - YEAR_OF_BIRTH - 1;
-	private static final int DAY_OF_BIRTH_6 = 20;
+	private static final int DAY_OF_BIRTH_6 = 30;
 	private static final int MONTH_OF_BIRTH_6 = 10;
 					
 	@Test public void testGetAge6() {
