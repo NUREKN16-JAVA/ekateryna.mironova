@@ -14,7 +14,10 @@ public class User implements Serializable {
 	private Date dateofBirth;
 	private Long id;
 	
-	public User() {
+	public User(String firstName, String lastName, Date date) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateofBirth = date;
 	}
 	
 	/**
@@ -29,6 +32,17 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.dateofBirth = dateofBirth;
 		this.id = id;
+	}
+
+	public User(Long id, String firstName, String lastName, Date dateofBirth) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateofBirth = dateofBirth;
+		this.id = id;
+	}
+
+	public User() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**

@@ -1,11 +1,27 @@
 Testsuite: ua.nure.kn.mironova.usermanagement.TestUser
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,025 sec
+Tests run: 8, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0,059 sec
 
-Testcase: testGetFullName took 0,004 sec
+Testcase: testGetFullName took 0,002 sec
 Testcase: testGetAge1 took 0,001 sec
 Testcase: testGetAge2 took 0 sec
 Testcase: testGetAge3 took 0 sec
-Testcase: testGetAge4 took 0 sec
-Testcase: testGetAge5 took 0 sec
+Testcase: testGetAge4 took 0,001 sec
+Testcase: testGetAge5 took 0,002 sec
+	FAILED
+expected:<19> but was:<20>
+junit.framework.AssertionFailedError: expected:<19> but was:<20>
+	at ua.nure.kn.mironova.usermanagement.TestUser.testGetAge5(TestUser.java:80)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+
 Testcase: testGetAge6 took 0 sec
+	FAILED
+expected:<19> but was:<20>
+junit.framework.AssertionFailedError: expected:<19> but was:<20>
+	at ua.nure.kn.mironova.usermanagement.TestUser.testGetAge6(TestUser.java:92)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+
 Testcase: testGetAge7 took 0 sec

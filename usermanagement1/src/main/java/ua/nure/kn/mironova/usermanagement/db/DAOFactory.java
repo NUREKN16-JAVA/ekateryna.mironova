@@ -3,43 +3,47 @@ package ua.nure.kn.mironova.usermanagement.db;
 import java.io.IOException;
 import java.util.Properties;
 
-public class DAOFactory {
-	private static final String USER_DAO = "dao.ua.nure.kn.mironova.usermanagement.db.UserDAO";
-	private final Properties properties;
-	private final static DAOFactory INSTANCE = new DAOFactory();
-    
-    public static DAOFactory getInstance() {
-        return INSTANCE;
-    }
+public abstract class DAOFactory {
+	private static final String DAO_FACTORY = "dao.factory";
+	protected static final String USER_DAO = "dao.ua.nure.kn.mironova.usermanagement.db.UserDAO";
+	protected static Properties properties;
+	private static DAOFactory instance;
 	
-	private DAOFactory() {
+	static {
 		properties = new Properties();
 		try {
-			properties.load(getClass().getClassLoader().getResourceAsStream("settings.properties"));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+			properties.load(DAOFactory.class.getClassLoader().getResourceAsStream("settings.properties"));
+		}
+		catch (IOException e) {
+			throw new RuntimeException (e);
 		}
 	}
+    
+    public static synchronized DAOFactory getInstance() {
+    	if (instance==null) {
+    		try {
+				Class<?> factoryClass = Class.forName(properties
+						.getProperty(DAO_FACTORY));
+				instance = (DAOFactory)factoryClass.newInstance();
+			} catch (Exception e) {
+				throw new RuntimeException (e);
+			}
+    	}
+        return instance;
+    }
 	
-	private ConnectionFactory getConnectionFactory() {
-		String user = properties.getProperty("connection.user");
-		String password = properties.getProperty("connection.password");
-		String url = properties.getProperty("connection.url");
-		String driver = properties.getProperty("connection.driver");
-		return new ConnectionFactoryImpl(driver, url, user, password);
+	protected DAOFactory() {
 	}
 	
-	public UserDAO getUserDAO() {
-		UserDAO result = null;
-		Class clazz;
-		try {
-			clazz = Class.forName(properties.getProperty(USER_DAO));
-			result = (UserDAO) clazz.newInstance();
-			result.setConnectionFactory(getConnectionFactory());
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	protected ConnectionFactory getConnectionFactory() {
+		return new ConnectionFactoryImpl(properties);
+	}
+	
+	public abstract UserDAO getUserDAO();
+	
+	public static void init(Properties prop) {
+		properties = prop;
+		instance = null;
 		
-		return result;
 	}
 }

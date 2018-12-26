@@ -3,6 +3,7 @@ package ua.nure.kn.mironova.usermanagement.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
 	private String driver; 
@@ -10,8 +11,11 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	private String user;
 	private String password;
 	
-	public ConnectionFactoryImpl() {
-		// TODO Auto-generated constructor stub
+	public ConnectionFactoryImpl(Properties properties) {
+		String user = properties.getProperty("connection.user");
+		String password = properties.getProperty("connection.password");
+		String url = properties.getProperty("connection.url");
+		String driver = properties.getProperty("connection.driver");
 	}
 	
 	public ConnectionFactoryImpl(final String driver,
