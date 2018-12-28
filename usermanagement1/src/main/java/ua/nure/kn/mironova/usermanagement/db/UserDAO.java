@@ -32,6 +32,14 @@ public interface UserDAO {
 	Collection<User> findAll() throws DatabaseException;
 	
 	/**
+	 * Find user in database
+	 * @return  user from database with this first name and last name
+	 * 			throw DatabaseException if any error occurs with DB
+	 * @author master
+	 */
+	Collection<User> find(String firstName, String lastName) throws DatabaseException;
+	
+	/**
 	 * Update information about user
 	 * @param user whose information you want to change
 	 * @return throw DatabaseException if any error occurs with DB
